@@ -1,15 +1,22 @@
 import React from 'react'
 
 
-const Todo = (props) => {
-
+const Todo = ({id, completed, name, onTodoClick}) => {
 
     return (
         <li className='todo stack-small'>
             <div className='c-cb'>
-                <input id={props.id} type='checkbox' defaultChecked={props.completed} />
-                <label className='todo-label' htmlFor={props.id}>
-                    {props.name}
+                <input
+                    id={id}
+                    type='checkbox'
+                    defaultChecked={completed}
+                    onChange={(event) => {
+                        let checked = event.target.checked;
+                        onTodoClick(checked)
+                    }}
+                />
+                <label className='todo-label' htmlFor={id}>
+                    {name}
                 </label>
             </div>
             <div className='btn-group'>
